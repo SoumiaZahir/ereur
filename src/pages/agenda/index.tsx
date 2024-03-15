@@ -21,16 +21,15 @@ function Index() {
       <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         <PageHeader title={<Typography variant='h1'>Agenda</Typography>} />
         <Grid container justifyContent={{ xs: 'center', sm: 'flex-start' }}>
-          <Grid  xs={12} sm={4} md={3} sx={{ mb: 2 }}>
+          <Grid xs={12} sm={4} md={3} sx={{ mb: 2 }}>
             <Button
-              fullWidth
               variant='contained'
               onClick={() => {
                 setShow(true)
               }}
             >
-              <Icon fontSize='1.125rem' icon='tabler:plus' />
-              Ajouter une Nouvelle Visite
+              <Icon fontSize='1.25rem' icon='tabler:plus' />
+              Nouvelle Visite
             </Button>
           </Grid>
           <Grid  xs={12} sm={8} md={9} container justifyContent='flex-end' spacing={1} sx={{ mb: 2 }}>

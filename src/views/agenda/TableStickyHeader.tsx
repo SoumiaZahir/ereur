@@ -14,16 +14,18 @@ import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 // import DialogEditVisit from "./visite/DialogEditVisit"
 import SidebarProduit from './visite/ProduitVisite';
+import VisiteComponent from './visite/Visite';
 
-interface Visite {
+export interface Visite {
   pointDeVente: string;
   h_db: string;
   h_fin: string;
   statut: string;
   conform: boolean | null;
+  date: string
 }
 
-interface MerchandiserVisite {
+export interface MerchandiserVisite {
   merchandiser: string;
   visites: Visite[];
 }
@@ -70,11 +72,11 @@ const TableStickyHeader = () => {
   const [visiteMarshandiser, setVisiteMarshandiser] = useState<MerchandiserVisite | null>(null);
   const [showProduit,setShowProduit]=useState<boolean>(false)
 
-const handleEditClick = (visite: Visite, merchandiser:string) => {
+const handleEditClick = (_visite: Visite, merchandiser:string) => {
   setShowEdit(true);
   setVisiteMarshandiser({
-    merchandiser: merchandiser,
-    visites: [visite]
+    merchandiser,
+    visites: [_visite]
   });
 };
 const handleShowProduit=()=>{
@@ -211,16 +213,17 @@ const handleShowProduit=()=>{
               <TableCell component='th' scope='row'>
                 {row.merchandiser}
               </TableCell>
-              {row.visites.map((event, eventIndex) => (
-                <TableCell sx={{ width: '25%' }} key={eventIndex}>
-                  {renderEventComponent(event,row.merchandiser)}
+              {row.visites.map((singleVisite, i) => (
+                <TableCell sx={{ width: '25%' }} key={i}>
+                  {/* {renderEventComponent(event, row.merchandiser)} */}
+                  {<VisiteComponent merchandiser={row.merchandiser} visite={singleVisite} />}
                 </TableCell>
               ))}
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      <SidebarProduit showProduit={showProduit} setShowProduit={setShowProduit} />
+      {/* <SidebarProduit showProduit={showProduit} setShowProduit={setShowProduit} /> */}
       {/* <DialogEditVisit showEdit={showEdit} setShowEdit={setShowEdit} visiteMarshandiser={visiteMarshandiser}  /> */}
     </TableContainer>
   );
