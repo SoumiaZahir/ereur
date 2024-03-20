@@ -99,6 +99,8 @@ const Header = styled(Box)<BoxProps>(({ theme }) => ({
   justifyContent: 'space-between'
 }))
 
+
+
 interface Visite {
   h_db: string
   h_fin: string
@@ -127,6 +129,7 @@ const families: Family[] = [
 
 const SidebarProduit = ({ visite, showProduit, setShowProduit }: ProduitVisite) => {
   // ** States
+  const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 7 })
   const [page, setPage] = useState<number>(0)
   const [rowsPerPage, setRowsPerPage] = useState<number>(10)
   const [selectedFamily, setSelectedFamily] = useState<string>('')
@@ -157,12 +160,6 @@ const SidebarProduit = ({ visite, showProduit, setShowProduit }: ProduitVisite) 
     setShowProduit(false)
   }
 
-
-
-
-
-
-
   // Filtered rows based on selected family and subfamily
   const filteredRows = rows.filter(row => {
     if (!selectedFamily && !selectedSubFamily) return true
@@ -173,19 +170,20 @@ const SidebarProduit = ({ visite, showProduit, setShowProduit }: ProduitVisite) 
   return (
 
     <Drawer
-    open={showProduit}
-    anchor='right'
-    variant='temporary'
-    onClose={handleClose}
-    ModalProps={{ keepMounted: true }}
-    sx={{
-      '& .MuiDrawer-paper': {
-        width: { xs: 1300, sm: 1300 },
-        // **marginTop: '280px',
-        height: '100vh'
-      }
-    }}
-  >
+  open={showProduit} // Contrôle l'ouverture et la fermeture du Drawer
+  anchor='right' // Ancre le Drawer à droite
+  variant='temporary' // Permet au Drawer de s'ouvrir et de se fermer
+  onClose={handleClose} // Appelé lorsque le Drawer est fermé
+  ModalProps={{ keepMounted: true }} // Permet au Drawer d'être rendu dans le DOM même s'il est fermé
+  sx={{
+    '& .MuiDrawer-paper': {
+      width: { xs: 1300, sm: 1300 }, // Largeur du Drawer pour les tailles d'écran xs et sm
+      // marginTop: '280px', // Marge haute du Drawer
+      // margin: '200px 0 280px 0', // Marge basse du Drawer
+      height: '100vh' // Hauteur du Drawer
+    }
+  }}
+>
       <div>
         <Header>
           <PageHeader title={<Typography variant='h1'>Detail & Informations sur l'evenement</Typography>} />
@@ -206,66 +204,68 @@ const SidebarProduit = ({ visite, showProduit, setShowProduit }: ProduitVisite) 
           </IconButton>
         </Header>
         <Card>
-          <CardContent>
-            <Grid container spacing={2} alignItems='center'>
-              {/* Point de Vente */}
-              <Grid item xs={2} sm={4} md={4}>
-                <Typography variant='h3'>{visite.pointDeVente}</Typography>
-              </Grid>
+  <CardContent style={{justifyContent:'space-between'}}>
 
-              {/* Date et Heure */}
-              <Grid item xs={2} sm={4} md={4}>
-                <Typography>la date de visite : {visite.date}</Typography>
-              </Grid>
-              <Grid item xs={2} sm={4} md={4}>
-                <Typography>l'heure de visite :{`${visite.h_db}-${visite.h_fin}`}</Typography>
-              </Grid>
+    <Grid container spacing={2} alignItems='center'>
+      {/* Point de Vente */}
+      <Grid item xs={12} md={4}>
+        <Typography variant='h2' style={{color:"#800080"}}>{visite.pointDeVente}</Typography>
+        <Typography>
+        <span style={{ fontSize: "15px", fontWeight: "bold" }}>Date de visite :</span> {visite.date}
+          <br />
+          <span style={{ fontSize: "15px", fontWeight: "bold" }}>  L'heure de visite : </span> {`${visite.h_db}-${visite.h_fin}`}
+        </Typography>
+      </Grid>
 
-              {/* Select Famille */}
-              <Grid item xs={12} md={6}>
-                <CustomTextField
-                  select
-                  fullWidth
-                  label='Select Family'
-                  value={selectedFamily}
-                  onChange={handleFamilyChange}
-                >
-                  <MenuItem value=''>Select Family</MenuItem>
-                  {families.map(family => (
-                    <MenuItem key={family.id} value={family.name}>
-                      {family.name}
+
+
+      {/* Select Famille */}
+      <Grid item xs={12} md={4} >
+        <CustomTextField
+          select
+          fullWidth
+          label='Select Family'
+          value={selectedFamily}
+          onChange={handleFamilyChange}
+        >
+          <MenuItem value=''>Select Family</MenuItem>
+          {families.map(family => (
+            <MenuItem key={family.id} value={family.name}>
+              {family.name}
+            </MenuItem>
+          ))}
+        </CustomTextField>
+      </Grid>
+
+      {/* Select Sous-famille */}
+      <Grid item xs={12} md={4}>
+        {selectedFamily && (
+          <CustomTextField
+            select
+            fullWidth
+            label='Select Subfamily'
+            value={selectedSubFamily}
+            onChange={handleSubFamilyChange}
+            sx={{ '& .MuiFilledInput-input.MuiSelect-select': { minWidth: '8rem !important' } }}
+          >
+            <MenuItem value=''>Select Sous-family</MenuItem>
+            {/* Conditionally render subfamilies menu items */}
+            {selectedFamily &&
+              families
+                .find(family => family.name === selectedFamily)
+                ?.subfamilies.map(subfamily =>
+                  subfamily !== null ? (
+                    <MenuItem key={subfamily} value={subfamily}>
+                      {subfamily}
                     </MenuItem>
-                  ))}
-                </CustomTextField>
-              </Grid>
-              {selectedFamily && (
-                <Grid item xs={12} md={6}>
-                  <CustomTextField
-                    select
-                    fullWidth
-                    label='Select Subfamily'
-                    value={selectedSubFamily}
-                    onChange={handleSubFamilyChange}
-                    sx={{ '& .MuiFilledInput-input.MuiSelect-select': { minWidth: '8rem !important' } }}
-                  >
-                    <MenuItem value=''>Select Sous-family</MenuItem>
-                    {/* Conditionally render subfamilies menu items */}
-                    {selectedFamily &&
-                      families
-                        .find(family => family.name === selectedFamily)
-                        ?.subfamilies.map(subfamily =>
-                          subfamily !== null ? (
-                            <MenuItem key={subfamily} value={subfamily}>
-                              {subfamily}
-                            </MenuItem>
-                          ) : null
-                        )}
-                  </CustomTextField>
-                </Grid>
-              )}
-            </Grid>
-          </CardContent>
-        </Card>
+                  ) : null
+                )}
+          </CustomTextField>
+        )}
+      </Grid>
+    </Grid>
+  </CardContent>
+</Card>
 
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Grid item xs={8}>

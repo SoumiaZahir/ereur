@@ -8,6 +8,10 @@ import Typography from '@mui/material/Typography'
 import { MerchandiserVisite, Visite } from '../TableStickyHeader'
 import DialogEditVisite from './DialogEditVisit'
 import SidebarProduit from './ProduitVisite'
+import IconButton, { IconButtonProps } from '@mui/material/IconButton'
+import { styled } from '@mui/material/styles';
+
+
 
 interface VisitesStatusesColors {
   'to do': string
@@ -24,6 +28,11 @@ const visitesStatusesColors: VisitesStatusesColors = {
   absent: '#f74033',
   default: '#fff'
 }
+
+const CustomIconButton = styled(IconButton)({
+  padding: 0, // Supprimer le rembourrage
+  margin: 0, // Supprimer la marge
+});
 
 function VisiteComponent({
   visite,
@@ -74,13 +83,15 @@ function VisiteComponent({
           )
         ) : null}
         <Grid container sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-
+        <CustomIconButton >
           <dfn title='Modifier Visite'><Icon
             icon='tabler:edit'
             fontSize='1.625rem'
             color={visite.statut === 'absent' ? 'white' : '#860C90'}
             onClick={() => setShow(true)}
           /></dfn>
+        </CustomIconButton>
+        <CustomIconButton>
           <dfn title='Detail Produit'><Icon
             icon='tabler:slideshow'
             fontSize='1.625rem'
@@ -88,6 +99,7 @@ function VisiteComponent({
             onClick={() => setShowProduit(true)}
           />
           </dfn>
+          </CustomIconButton>
         </Grid>
         {visite.statut === 'absent' ? (
           <CardHeader
