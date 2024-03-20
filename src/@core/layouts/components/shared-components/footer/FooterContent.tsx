@@ -5,7 +5,6 @@ import Link from 'next/link'
 import Box from '@mui/material/Box'
 import { Theme } from '@mui/material/styles'
 import { styled } from '@mui/material/styles'
-import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
 const StyledCompanyName = styled(Link)(({ theme }) => ({
@@ -27,14 +26,8 @@ const FooterContent = () => {
   const hidden = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'))
 
   return (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
-      <Typography sx={{ mr: 2, display: 'flex', color: 'text.secondary' }}>
-        {`© ${new Date().getFullYear()}, Made By SoloStack Tech`}
-        {/* <Typography sx={{ ml: 1 }} target='_blank' href='#' component={StyledCompanyName}>
-          Mohamed
-        </Typography> */}
-      </Typography>
-    </Box>
+    <>
+    </>
   )
 }
 

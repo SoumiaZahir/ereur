@@ -40,6 +40,7 @@ import DialogAddUser from '../user/DialogAddUser'
 import DetailUser from '../user/DetailUser'
 import DialogAddPoint from '../pointDeVente/DialogAddPoint'
 import DetailPointDeVente from '../pointDeVente/DetailPointDeVente'
+import PickersBasic from '../picker/PickersBasic'
 
 const CustomCloseButton = styled(IconButton)<IconButtonProps>(({ theme }) => ({
   top: 0,
@@ -105,7 +106,7 @@ const DialogAddCard = ({ show, setShow }: { show: any; setShow: any }) => {
           <CustomCloseButton onClick={handleClose}>
             <Icon icon='tabler:x' fontSize='1.25rem' />
           </CustomCloseButton>
-          <Box sx={{ mb: 4, textAlign: 'center' }}>
+          <Box sx={{ mb: 4, textAlign: 'left' }}>
             <Typography variant='h3' sx={{ mb: 3 }}>
               Ajouter une Nouvelle Visite
             </Typography>
@@ -122,6 +123,7 @@ const DialogAddCard = ({ show, setShow }: { show: any; setShow: any }) => {
               </FormControl>
             </Grid>
             <Grid item xs={12} sm={6} justify-content={'flex-end'}>
+              <dfn title='Rechercher un point de vente '>
               <IconButton aria-label='capture screenshot'>
                 <Icon
                   icon='tabler:home-search'
@@ -130,6 +132,8 @@ const DialogAddCard = ({ show, setShow }: { show: any; setShow: any }) => {
                   }}
                 />
               </IconButton>
+              </dfn>
+              <dfn title='Ajouter un point de vente'>
               <IconButton aria-label='capture screenshot'>
                 <Icon
                   icon='tabler:home-plus'
@@ -138,6 +142,7 @@ const DialogAddCard = ({ show, setShow }: { show: any; setShow: any }) => {
                   }}
                 />
               </IconButton>
+              </dfn>
             </Grid>
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth>
@@ -150,49 +155,44 @@ const DialogAddCard = ({ show, setShow }: { show: any; setShow: any }) => {
               </FormControl>
             </Grid>
             <Grid item xs={12} sm={6}>
+              <dfn title='Rechercher Marshandiser'>
               <IconButton>
                 <Icon icon='tabler:user-search' onClick={() => setShowDetail(true)} />
               </IconButton>
+              </dfn>
+              <dfn title='Ajouter Marshandiser'>
               <IconButton>
                 <Icon icon='tabler:user-plus' onClick={() => setToggle(true)} />
               </IconButton>
+              </dfn>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <DatePicker
-                showTimeSelect
-                // selected={time}
-                timeIntervals={15}
-                showTimeSelectOnly
-                dateFormat='h:mm aa'
-                id='time-only-picker'
-                popperPlacement='auto'
-                // onChange={(date: Date) => setTime(date)}
-                customInput={<CustomInput label='heure_debut' />}
-              />
+            <DatePicker
+              showTimeSelect
+              timeIntervals={15}
+              showTimeSelectOnly
+              dateFormat='h:mm aa'
+              id='time-only-picker'
+              popperPlacement='auto'
+              onChange={(date: Date) => console.log(date)} // Dummy onChange handler
+              customInput={<CustomInput label='heure_debut' />}
+            />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <DatePicker
-                showTimeSelect
-                // selected={time}
-                timeIntervals={15}
-                showTimeSelectOnly
-                dateFormat='h:mm aa'
-                id='time-only-picker'
-                popperPlacement='auto'
-                // onChange={(date: Date) => setTime(date)}
-                customInput={<CustomInput label='heure_fin' />}
-              />
+            <DatePicker
+              showTimeSelect
+              timeIntervals={15}
+              showTimeSelectOnly
+              dateFormat='h:mm aa'
+              id='time-only-picker'
+              popperPlacement='auto'
+              onChange={(date) => console.log(date)} // Add onChange handler here
+              customInput={<CustomInput label='heure_fin' />}
+            />
             </Grid>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <DatePicker
-              // selected={date}
-              id='basic-input'
-              popperPlacement='auto'
-              // onChange={(date: Date) => setDate(date)}
-              placeholderText='Click to select a date'
-              customInput={<CustomInput label='Date Visite' />}
-            />
+            <PickersBasic />
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormControl component='fieldset'>
@@ -205,13 +205,8 @@ const DialogAddCard = ({ show, setShow }: { show: any; setShow: any }) => {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid item xs={12}>
-            <FormControlLabel
-              control={<Switch defaultChecked />}
-              label='Save Card for future billing?'
-              sx={{ '& .MuiTypography-root': { color: 'text.secondary' } }}
-            />
-          </Grid>
+
+
         </DialogContent>
         <DialogActions
           sx={{

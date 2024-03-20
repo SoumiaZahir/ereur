@@ -13,7 +13,9 @@ import CustomInput from './PickersCustomInput'
 // ** Types
 import { DateType } from 'src/types/forms/reactDatepickerTypes'
 
-const PickersBasic = ({ popperPlacement }: { popperPlacement: ReactDatePickerProps['popperPlacement'] }) => {
+import { Placement } from '@popperjs/core';
+
+const PickersBasic = ({ popperPlacement = 'auto' }: { popperPlacement?: Placement }) => {
   // ** States
   const [date, setDate] = useState<DateType>(new Date())
 
@@ -23,10 +25,9 @@ const PickersBasic = ({ popperPlacement }: { popperPlacement: ReactDatePickerPro
       id='basic-input'
       popperPlacement={popperPlacement}
       onChange={(date: Date) => setDate(date)}
-      placeholderText='Click to select a date'
+      placeholderText='Date De Visite'
       customInput={<CustomInput label='Date De Visite' />}
     />
   )
 }
-
 export default PickersBasic

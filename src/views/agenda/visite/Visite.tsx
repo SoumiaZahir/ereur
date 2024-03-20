@@ -9,7 +9,6 @@ import { MerchandiserVisite, Visite } from '../TableStickyHeader'
 import DialogEditVisite from './DialogEditVisit'
 import SidebarProduit from './ProduitVisite'
 
-
 interface VisitesStatusesColors {
   'to do': string
   doing: string
@@ -17,6 +16,7 @@ interface VisitesStatusesColors {
   absent: string
   default: string
 }
+
 const visitesStatusesColors: VisitesStatusesColors = {
   'to do': '#E0F2FE',
   doing: '#FFEDD5',
@@ -30,56 +30,81 @@ function VisiteComponent({
   merchandiser
 }: {
   visite: Visite
-  merchandiser: MerchandiserVisite['merchandiser']
-}) {
+  merchandiser: MerchandiserVisite['merchandiser']}) {
   const visiteBgColor =
     visitesStatusesColors[visite.statut as keyof typeof visitesStatusesColors] || visitesStatusesColors.default
 
   const [show, setShow] = useState(false)
   const [showProduit, setShowProduit] = useState(false)
+
   return (
     <>
       <Card sx={{ backgroundColor: visiteBgColor, alignItems: 'center', position: 'relative' }}>
-        {/* && (['doing','done'].includes(visite.statut)) */}
-        {visite.statut == 'done' || visite.statut == 'doing' ? (
+        {visite.statut === 'done' || visite.statut === 'doing' ? (
           visite.conform ? (
-            <Card sx={{ position: 'absolute', top: 0, left: 0, bottom: 0, backgroundColor: '#BEF264', width: '18px' }}>
-              <p style={{ writingMode: 'vertical-rl', textOrientation: 'mixed', color: 'black' }}>conform</p>
+            <Card sx={{ position: 'absolute', left: 0, top: 0, bottom: 0 ,paddingLeft:'0%', backgroundColor: '#BEF264', width: '18px' }}>
+              <p
+                style={{
+                  writingMode: 'vertical-rl',
+                  textOrientation: 'mixed',
+                  color: 'white',
+                  position: 'absolute',
+                  bottom:"30%",
+                  left:"-80%",
+                }}
+              >
+                Conforme
+              </p>
             </Card>
           ) : (
-            <Card sx={{ position: 'absolute', top: 0, bottom: 0, backgroundColor: '#F11C1C ', width: '18px' }}>
-              <p style={{ writingMode: 'vertical-rl', textOrientation: 'mixed', color: 'black' }}>Non Conforme</p>
+            <Card sx={{ position: 'absolute', top: 0, bottom: 0, backgroundColor: '#F11C1C', width: '18px' }}>
+              <p
+                style={{
+                  writingMode: 'vertical-rl',
+                  textOrientation: 'mixed',
+                  color: 'white',
+                  left:"-80%",
+                  position: 'absolute',
+                  bottom:"25%",
+                }}
+              >
+                Non Conforme
+              </p>
             </Card>
           )
         ) : null}
         <Grid container sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-          <Icon
+
+          <dfn title='Modifier Visite'><Icon
             icon='tabler:edit'
             fontSize='1.625rem'
-            color='#860C90'
-            onClick={() => {
-              setShow(true)
-            }}
-          />
-          <Icon
+            color={visite.statut === 'absent' ? 'white' : '#860C90'}
+            onClick={() => setShow(true)}
+          /></dfn>
+          <dfn title='Detail Produit'><Icon
             icon='tabler:slideshow'
             fontSize='1.625rem'
-            color='#860C90'
-            onClick={() => {
-              setShowProduit(true)
-            }}
+            color={visite.statut === 'absent' ? 'white' : '#860C90'}
+            onClick={() => setShowProduit(true)}
           />
+          </dfn>
         </Grid>
-        <CardHeader title={visite.pointDeVente} />
+        {visite.statut === 'absent' ? (
+          <CardHeader
+            title={<Typography sx={{ color: 'white', fontSize: '18px' }}>{visite.pointDeVente}</Typography>}
+          />
+        ) : (
+          <CardHeader title={visite.pointDeVente} />
+        )}
         <CardContent>
-          <Typography variant='body2' sx={{ marginBottom: 3.25 }}>
+          <Typography variant='body2' sx={{ marginBottom: 3.25, color: visite.statut === 'absent' ? 'white' : null }}>
             {visite.h_db} - {visite.h_fin}
           </Typography>
           <Typography variant='body2'>{/* Image rendering */}</Typography>
         </CardContent>
 
         <DialogEditVisite merchandiser={merchandiser} visite={visite} setShow={setShow} show={show} />
-        <SidebarProduit showProduit={showProduit} setShowProduit={setShowProduit} />
+        <SidebarProduit showProduit={showProduit} setShowProduit={setShowProduit} visite={visite}/>
       </Card>
     </>
   )

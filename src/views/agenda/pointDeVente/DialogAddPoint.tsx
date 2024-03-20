@@ -74,7 +74,7 @@ const DialogAddPoint = ({togglePoint, setTogglePoint} :{togglePoint: any, setTog
           <CustomCloseButton onClick={() => setTogglePoint(false)}>
             <Icon icon='tabler:x' fontSize='1.25rem' />
           </CustomCloseButton>
-          <Box sx={{ mb: 8, textAlign: 'center' }}>
+          <Box sx={{ mb: 8, textAlign: 'left' }}>
             <Typography variant='h3' sx={{ mb: 3 }}>
               Ajouter Un Point De Vente
             </Typography>
@@ -107,13 +107,6 @@ const DialogAddPoint = ({togglePoint, setTogglePoint} :{togglePoint: any, setTog
                 <MenuItem value='New York'>New York</MenuItem>
                 <MenuItem value='London'>London</MenuItem>
               </CustomTextField>
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Switch defaultChecked />}
-                label='Make this default shipping address'
-                sx={{ '& .MuiFormControlLabel-label': { color: 'text.secondary' } }}
-              />
             </Grid>
           </Grid>
         </DialogContent>

@@ -74,7 +74,7 @@ const DialogAddUser = ({toggle, setToggle} :{toggle: any, setToggle:any}) => {
           <CustomCloseButton onClick={() => setToggle(false)}>
             <Icon icon='tabler:x' fontSize='1.25rem' />
           </CustomCloseButton>
-          <Box sx={{ mb: 8, textAlign: 'center' }}>
+          <Box sx={{ mb: 8, textAlign: 'left' }}>
             <Typography variant='h3' sx={{ mb: 3 }}>
               Ajouter Un Marshendiser
             </Typography>
@@ -100,13 +100,7 @@ const DialogAddUser = ({toggle, setToggle} :{toggle: any, setToggle:any}) => {
               <CustomTextField fullWidth label='Telephone' placeholder='Telephone'  />
             </Grid>
 
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Switch defaultChecked />}
-                label='Make this default shipping address'
-                sx={{ '& .MuiFormControlLabel-label': { color: 'text.secondary' } }}
-              />
-            </Grid>
+
           </Grid>
         </DialogContent>
         <DialogActions

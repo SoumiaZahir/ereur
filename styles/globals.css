@@ -1,7 +1,9 @@
 html,
-body {
+.layout-wrapper {
   min-height: 100%;
-  background-color: #F5EEF8 ;
+  background-color: #F5EEF8 !important;
+  font-family: 'Public Sans', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue';
 }
 
 #__next {

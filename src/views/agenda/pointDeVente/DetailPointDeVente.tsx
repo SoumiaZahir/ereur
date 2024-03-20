@@ -160,7 +160,7 @@ const DetailPoint = ({ showDetailPoint, setShowDetailPoint }: { showDetailPoint:
           </Box>
           <TableContainer component={Paper} sx={{ width: '100%', height: '400px' }} >
             <Table >
-              <TableHead sx={{ backgroundColor: '#F4ECF7' }}>
+              <TableHead sx={{ backgroundColor: '#EBDEF0' }}>
                 <TableRow>
                   {columns.map(column => (
                     <TableCell key={column.id} align={column.align} sx={{ minWidth: column.minWidth,color: "#9B59B6" }}>

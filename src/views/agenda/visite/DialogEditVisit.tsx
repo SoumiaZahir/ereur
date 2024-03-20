@@ -42,6 +42,7 @@ import DetailUser from '../user/DetailUser'
 import DialogAddPoint from '../pointDeVente/DialogAddPoint'
 import DetailPointDeVente from '../pointDeVente/DetailPointDeVente'
 import { MerchandiserVisite } from '../TableStickyHeader'
+import PickersBasic from '../picker/PickersBasic'
 // import DatePicker from 'react-datepicker'
 
 const CustomCloseButton = styled(IconButton)<IconButtonProps>(({ theme }) => ({
@@ -126,16 +127,19 @@ const DialogEditVisite = ({ visite, merchandiser, show, setShow }: DialogEditVis
           <CustomCloseButton onClick={handleClose}>
             <Icon icon='tabler:x' fontSize='1.25rem' />
           </CustomCloseButton>
-          <Box sx={{ mb: 4, textAlign: 'center' }}>
+          <Box sx={{ mb: 4, textAlign: 'left' }}>
             <Typography variant='h3' sx={{ mb: 3 }}>
               Modifier une Visite
             </Typography>
           </Box>
-          <Grid container spacing={6}>
+          <Grid container spacing={3}>
             <Grid item xs={12} sm={6}>
-            <CustomTextField fullWidth label='Point de Vente' defaultValue={visite.pointDeVente} />
+              <CustomTextField fullWidth label='Point de Vente' defaultValue={visite.pointDeVente} />
             </Grid>
-            <Grid item xs={12} sm={6} justify-content={'flex-end'}>
+            <Grid item xs={12} sm={6} marginTop={4} >
+              <Grid container alignItems="center" justifyContent="flex-start" spacing={1}>
+                <Grid item>
+                <dfn title='Rechercher un point de vente '>
               <IconButton aria-label='capture screenshot'>
                 <Icon
                   icon='tabler:home-search'
@@ -144,6 +148,8 @@ const DialogEditVisite = ({ visite, merchandiser, show, setShow }: DialogEditVis
                   }}
                 />
               </IconButton>
+              </dfn>
+              <dfn title='Ajouter un point de vente'>
               <IconButton aria-label='capture screenshot'>
                 <Icon
                   icon='tabler:home-plus'
@@ -152,75 +158,69 @@ const DialogEditVisite = ({ visite, merchandiser, show, setShow }: DialogEditVis
                   }}
                 />
               </IconButton>
+              </dfn>
+                </Grid>
+              </Grid>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <CustomTextField fullWidth label='Marshandiser' defaultValue={merchandiser}  />
+              <CustomTextField fullWidth label='Marshandiser' defaultValue={merchandiser} />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} marginTop={4} >
+              <Grid container alignItems="center" justifyContent="flex-start" spacing={1}>
+                <Grid item>
+                <dfn title='Rechercher Marshandiser'>
               <IconButton>
                 <Icon icon='tabler:user-search' onClick={() => setShowDetail(true)} />
               </IconButton>
+              </dfn>
+              <dfn title='Ajouter Marshandiser'>
               <IconButton>
                 <Icon icon='tabler:user-plus' onClick={() => setToggle(true)} />
               </IconButton>
+              </dfn>
+                </Grid>
+              </Grid>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <DatePicker
-                // selected={new Date(visite.h_db)}
-                timeIntervals={15}
-                showTimeSelectOnly
-                dateFormat='h:mm aa'
-                id='time-only-picker'
-                popperPlacement='auto'
-                // onChange={(date: Date) => setTime(date)}
-                customInput={<CustomInput label='heure_debut' />}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <DatePicker
-                // showTimeSelect
-                // selected={new Date(visite.h_fin)}
-                timeIntervals={15}
-                showTimeSelectOnly
-                dateFormat='h:mm aa'
-                id='time-only-picker'
-                popperPlacement='auto'
-                // onChange={(date: Date) => setTime(date)}
-                customInput={<CustomInput label='heure_fin' />}
-              />
-            </Grid>
-          </Grid>
-          <Grid item xs={12} sm={6}>
             <DatePicker
-              // selected={new Date(visite.date)}
-              id='basic-input'
+              timeIntervals={15}
+              showTimeSelectOnly
+              dateFormat='h:mm aa'
+              id='time-only-picker'
               popperPlacement='auto'
-              // onChange={(date: Date) => setDate(date)}
-              placeholderText='Click to select a date'
-              customInput={<CustomInput label='Date Visite' />}
+              onChange={(date) => console.log(date)} // Add placeholder onChange handler here
+              customInput={<CustomInput label='heure_debut' />}
             />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <FormControl component='fieldset'>
-              <FormLabel component='legend'>Status</FormLabel>
-              <RadioGroup aria-label='status' name='status' value={visite.statut} onChange={handleChangeStatus} row>
-                <FormControlLabel value='todo' control={<Radio />} label='A Faire' />
-                <FormControlLabel value='doing' control={<Radio />} label='En cours' />
-                <FormControlLabel value='done' control={<Radio />} label='Fini' />
-                <FormControlLabel value='absent' control={<Radio />} label='Absent' />
-              </RadioGroup>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12}>
-            <FormControlLabel
-              control={<Switch defaultChecked />}
-              label='Save Card for future billing?'
-              sx={{ '& .MuiTypography-root': { color: 'text.secondary' } }}
+
+            </Grid>
+            <Grid item xs={12} sm={6}>
+            <DatePicker
+              timeIntervals={15}
+              showTimeSelectOnly
+              dateFormat='h:mm aa'
+              id='time-only-picker'
+              popperPlacement='auto'
+              onChange={(date) => console.log(date)} // Add placeholder onChange handler here
+              customInput={<CustomInput label='heure_fin' />}
             />
+
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <PickersBasic/>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <FormControl component='fieldset'>
+                <FormLabel component='legend'>Status</FormLabel>
+                <RadioGroup aria-label='status' name='status' value={visite.statut} onChange={handleChangeStatus} row>
+                  <FormControlLabel value='todo' control={<Radio />} label='A Faire' />
+                  <FormControlLabel value='doing' control={<Radio />} label='En cours' />
+                  <FormControlLabel value='done' control={<Radio />} label='Fini' />
+                  <FormControlLabel value='absent' control={<Radio />} label='Absent' />
+                </RadioGroup>
+              </FormControl>
+            </Grid>
           </Grid>
         </DialogContent>
-
-
         <DialogActions
           sx={{
             justifyContent: 'center',
@@ -235,18 +235,11 @@ const DialogEditVisite = ({ visite, merchandiser, show, setShow }: DialogEditVis
             Cancel
           </Button>
         </DialogActions>
-
       </Dialog>
-
-
       <DialogAddUser toggle={toggle} setToggle={setToggle} />
-
       <DetailUser showDetail={showDetail} setShowDetail={setShowDetail} />
-
       <DialogAddPoint togglePoint={togglePoint} setTogglePoint={setTogglePoint} />
-
       <DetailPointDeVente showDetailPoint={showDetailPoint} setShowDetailPoint={setShowDetailPoint} />
-
     </Card>
   )
 }
