@@ -36,7 +36,7 @@ const MarshandiserVisites: MerchandiserVisite[] = [
     visites: [
       createVisite("Morocco Mall", "8:00", "12:00", "to do", null,"2024-11-25"),
       createVisite("Marjane Ain Sbaa", "13:00", "15:00", "done", true,"2024-11-26"),
-      createVisite("Carrefour", "18:00", "21:00", "absent", true,"2024-11-27"),
+      createVisite("Carrefour", "18:00", "21:00", "absent", null,"2024-11-27"),
       createVisite("Bim", "8:00", "12:00", "done", false,"2024-11-28"),
     ]
   },
@@ -44,7 +44,7 @@ const MarshandiserVisites: MerchandiserVisite[] = [
     merchandiser: "Jihan",
     visites: [
       createVisite("Morocco Mall", "8:00", "12:00", "to do", null,"2024-11-25"),
-      createVisite("Marjane Ain Sbaa", "13:00", "15:00", "absent", true,"2024-11-26"),
+      createVisite("Marjane Ain Sbaa", "13:00", "15:00", "absent", null,"2024-11-26"),
       createVisite("Carrefour", "18:00", "21:00", "doing", true,"2024-11-27"),
       createVisite("Bim", "8:00", "12:00", "done", false,"2024-11-28"),
     ]
@@ -55,7 +55,7 @@ const MarshandiserVisites: MerchandiserVisite[] = [
       createVisite("Morocco Mall", "8:00", "12:00", "doing", null,"2024-11-25"),
       createVisite("Marjane Ain Sbaa", "13:00", "15:00", "doing", true,"2024-11-26"),
       createVisite("Carrefour", "18:00", "21:00", "doing", true,"2024-11-27"),
-      createVisite("Bim", "8:00", "12:00", "absent", false,"2024-11-28"),
+      createVisite("Bim", "8:00", "12:00", "absent", null,"2024-11-28"),
     ]
   }
 ];

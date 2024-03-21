@@ -12,7 +12,6 @@ import IconButton, { IconButtonProps } from '@mui/material/IconButton'
 import { styled } from '@mui/material/styles';
 
 
-
 interface VisitesStatusesColors {
   'to do': string
   doing: string
@@ -74,7 +73,7 @@ function VisiteComponent({
                   color: 'white',
                   left:"-80%",
                   position: 'absolute',
-                  bottom:"25%",
+                  bottom:"28%",
                 }}
               >
                 Non Conforme
@@ -112,7 +111,14 @@ function VisiteComponent({
           <Typography variant='body2' sx={{ marginBottom: 3.25, color: visite.statut === 'absent' ? 'white' : null }}>
             {visite.h_db} - {visite.h_fin}
           </Typography>
-          <Typography variant='body2'>{/* Image rendering */}</Typography>
+          <Typography variant='body2'  sx={{ display: 'flex', gap: '10px' }}>
+            <img src='/images/agenda/calendar.png' width={25} height={25}/>
+            <img src='/images/agenda/calendar.png' width={25} height={25}/>
+            <img src='/images/agenda/calendar.png' width={25} height={25}/>
+            <img src='/images/agenda/calendar.png' width={25} height={25}/>
+            <img src='/images/agenda/calendar.png' width={25} height={25}/>
+            <img src='/images/agenda/calendar.png' width={25} height={25}/>
+          </Typography>
         </CardContent>
 
         <DialogEditVisite merchandiser={merchandiser} visite={visite} setShow={setShow} show={show} />

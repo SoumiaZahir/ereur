@@ -20,7 +20,7 @@ const data: DataGridRowType[] = [
   },
   {
     id: 1,
-    avatar: '8.png',
+    avatar: '2.png',
     full_name: "Korrie O'Crevy",
     post: 'Nuclear Power Engineer',
     email: 'kocrevy0@thetimes.co.uk',
