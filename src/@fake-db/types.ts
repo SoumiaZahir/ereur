@@ -38,6 +38,16 @@ export type FaqType = {
     qandA: FaqQAndAType[]
   }
 }
+export type PDV ={
+  id:number
+  nom: string
+  ville: string
+  enseigne: string
+  region: string
+  localisation: string
+  checked:boolean
+}
+
 
 // Card Statistics Page
 //-------------------------------
@@ -148,17 +158,13 @@ export type UserProfileActiveTab = ProfileTabType | TeamsTabType[] | ProjectsTab
 // Data Grid page
 //---------------
 export type DataGridRowType = {
-  id: number
-  age: string
-  post: string
-  city: string
-  email: string
-  salary: number
-  status: number
-  avatar: string
-  full_name: string
-  start_date: string
-  experience: string
+  id: number;
+    poste: string;
+    email: string;
+    nom: string;
+    prenom: string;
+    tele: string;
+    actif:boolean
 }
 
 // Help Center

@@ -75,7 +75,8 @@ const SidebarProduit = ({ visite, showProduit, setShowProduit }: ProduitVisite) 
   const [selectedFamily, setSelectedFamily] = useState<string>('')
   const [selectedSubFamily, setSelectedSubFamily] = useState<string>('')
   const [img, setImg] = useState<boolean>(false)
-  const [url, setUrl] = useState<string>('/images/avatars/1.png')
+  const [url, setUrl] = useState<string>('/images/agenda/calendar.png')
+  const [open,setOpen]=useState<boolean>(false)
 
   const handleFamilyChange = (event: ChangeEvent<{ value: unknown }>) => {
     setSelectedFamily(event.target.value as string)
@@ -269,7 +270,7 @@ const SidebarProduit = ({ visite, showProduit, setShowProduit }: ProduitVisite) 
                       </Typography>
                       <Box sx={{ marginBottom: 2 }}>
                         <Card variant='outlined'>
-                          <ImageComponent url={url} setUrl={setUrl} />
+                          <ImageComponent url={url}/>
                         </Card>
                       </Box>
                     </Box>
@@ -284,7 +285,9 @@ const SidebarProduit = ({ visite, showProduit, setShowProduit }: ProduitVisite) 
                       </Typography>
                       <Box sx={{ marginBottom: 2 }}>
                         <Card variant='outlined'>
-                          <ImageComponent url={url} setUrl={setUrl} />
+
+                          <ImageComponent url={url}  />
+
                         </Card>
                       </Box>
                     </Box>

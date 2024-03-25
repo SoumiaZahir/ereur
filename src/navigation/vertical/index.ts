@@ -12,7 +12,7 @@ const navigation = (): VerticalNavItemsType => {
     {
       title: 'User Profile',
       icon: 'tabler:user',
-      path: '/user-profile'
+      path: '/user'
     },
     {
       title: 'Agenda',
@@ -34,6 +34,33 @@ const navigation = (): VerticalNavItemsType => {
       icon: "tabler:currency-euro",
       path: '/prix'
     },
+    {
+      title: 'Seetings',
+      icon: "tabler:layout-grid",
+      children: [
+
+        {
+          title: 'User Profile',
+          icon: 'tabler:user',
+          path: 'admin/user'
+        },
+        {
+          title: 'Points De Vente',
+          icon: "tabler:building-store",
+          path: 'admin/pdv'
+        },
+        {
+          title: 'Produit',
+          icon: "tabler:question-mark",
+          path: 'admin/produit'
+        },
+        {
+          title: 'les critères de contrôle ',
+          icon: "tabler:question-mark",
+          path: 'admin/controle'
+        },
+      ]
+    }
   ]
 }
 

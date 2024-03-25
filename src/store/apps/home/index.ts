@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const homeSlice = createSlice({
-  name: 'home',
+  name: 'pdv',
   initialState: 'Mohaa',
-  reducers: {}
+  reducers: {
+    
+  }
 })
 
 export default homeSlice.reducer
