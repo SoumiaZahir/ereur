@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import { Button, useMediaQuery } from '@mui/material';
 import { ThemeColor } from 'src/@core/layouts/types';
-import { DataGridRowType } from 'src/@fake-db/types';
+import { DataRowsUser } from 'src/@fake-db/types';
 import { getInitials } from 'src/@core/utils/get-initials';
 import { rows } from 'src/@fake-db/user/static-data';
 import QuickSearchToolbar from 'src/views/QuickSearchToolbar';
@@ -16,9 +16,9 @@ const escapeRegExp = (value: string) => {
 };
 
 const User = () => {
-  const [data, setData] = useState<DataGridRowType[]>(rows);
+  const [data, setData] = useState<DataRowsUser[]>(rows);
   const [searchText, setSearchText] = useState<string>('');
-  const [filteredData, setFilteredData] = useState<DataGridRowType[]>([]);
+  const [filteredData, setFilteredData] = useState<DataRowsUser[]>([]);
   const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 7 });
   const [user, setUser] = useState<any>({});
   const [show, setShow] = useState<boolean>(false);

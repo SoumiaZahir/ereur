@@ -1,4 +1,6 @@
-export const rows = [
+import { DataRowsUser } from 'src/@fake-db/types';
+
+export const rows:DataRowsUser[] = [
   {
     id: 1,
     poste: 'Software Developer',
