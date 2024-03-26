@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import { Button, useMediaQuery } from '@mui/material';
 import { ThemeColor } from 'src/@core/layouts/types';
-import { DataGridRowType } from 'src/@fake-db/types';
+import { DataRowsUser } from 'src/@fake-db/types';
 import QuickSearchToolbar from 'src/views/QuickSearchToolbar';
 // import { Adminrow } from 'src/@fake-db/admin/PDV/static-data';
 import { PDV } from 'src/@fake-db/types';
@@ -19,7 +19,7 @@ const escapeRegExp = (value: string) => {
 const PDV = ({adminDataRow, setAdminDataRow}:{adminDataRow:any, setAdminDataRow:any}) => {
 
   const [searchText, setSearchText] = useState<string>('');
-  
+
   const [filteredData, setFilteredData] = useState<PDV[]>([]);
   const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 7 });
 

@@ -156,19 +156,19 @@ export type UserProfileActiveTab = ProfileTabType | TeamsTabType[] | ProjectsTab
 
 // Data Grid page
 //---------------
-// export type DataGridRowType = {
-//   id: number
-//   avatar: string
-//   full_name: string
-//   post: string
-//   email: string
-//   city: string
-//   start_date: string
-//   salary: number
-//   age: string
-//   experience: string
-//   status: number
-// }
+export type DataGridRowType = {
+  id: number
+  avatar: string
+  full_name: string
+  post: string
+  email: string
+  city: string
+  start_date: string
+  salary: number
+  age: string
+  experience: string
+  status: number
+}
 export interface DataRowsUser {
   id: number
   avatar?: string
