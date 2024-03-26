@@ -5,11 +5,13 @@ import Icon from 'src/@core/components/icon'
 import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
-import { MerchandiserVisite, Visite } from '../TableStickyHeader'
+import { MerchandiserVisite, PointDeVente, Visite } from '../TableStickyHeader'
 import DialogEditVisite from './DialogEditVisit'
 import SidebarProduit from './ProduitVisite'
 import IconButton, { IconButtonProps } from '@mui/material/IconButton'
 import { styled } from '@mui/material/styles';
+import { Button } from '@mui/material'
+import InfoPDV from './InfoPDV'
 
 
 interface VisitesStatusesColors {
@@ -44,6 +46,13 @@ function VisiteComponent({
 
   const [show, setShow] = useState(false)
   const [showProduit, setShowProduit] = useState(false)
+  const [showPDV,setShowPDV]=useState(false)
+  const [PDV,setPDV]=useState<PointDeVente>()
+
+  const handleShow =(pdv:any)=>{
+    setShowPDV(true)
+    setPDV(pdv)
+  }
 
   return (
     <>
@@ -100,13 +109,17 @@ function VisiteComponent({
           </dfn>
           </CustomIconButton>
         </Grid>
-        {visite.statut === 'absent' ? (
-          <CardHeader
-            title={<Typography sx={{ color: 'white', fontSize: '18px' }}>{visite.pointDeVente}</Typography>}
-          />
-        ) : (
-          <CardHeader title={visite.pointDeVente} />
-        )}
+        <CardHeader
+        title={
+          <Typography style={{ color: visite.statut === 'absent' ? 'white' : undefined,display:"flex",justifyContent:"flex-start" }}>
+            <Icon icon="tabler:info-circle"
+            style={{ color: visite.statut === 'absent' ? 'white' : "#800080",cursor:"pointer" }}
+            onClick={()=>handleShow(visite.pointDeVente)}
+             />
+            {visite.pointDeVente.nom}
+          </Typography>
+        }
+      />
         <CardContent>
           <Typography variant='body2' sx={{ marginBottom: 3.25, color: visite.statut === 'absent' ? 'white' : null }}>
             {visite.h_db} - {visite.h_fin}
@@ -124,6 +137,7 @@ function VisiteComponent({
         <DialogEditVisite merchandiser={merchandiser} visite={visite} setShow={setShow} show={show} />
         <SidebarProduit showProduit={showProduit} setShowProduit={setShowProduit} visite={visite}/>
       </Card>
+      <InfoPDV showPDV={showPDV} setShowPDV={setShowPDV} PDV={PDV}/>
     </>
   )
 }

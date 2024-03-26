@@ -35,6 +35,7 @@ import CardContent from '@mui/material/CardContent'
 
 // ** Types
 import { ThemeColor } from 'src/@core/layouts/types'
+import { Visite } from '../TableStickyHeader'
 
 const Header = styled(Box)<BoxProps>(({ theme }) => ({
   display: 'flex',
@@ -43,14 +44,14 @@ const Header = styled(Box)<BoxProps>(({ theme }) => ({
   justifyContent: 'space-between'
 }))
 
-interface Visite {
-  h_db: string
-  h_fin: string
-  pointDeVente: string
-  statut: string
-  date: string
-  conform: boolean | null
-}
+// interface Visite {
+//   h_db: string
+//   h_fin: string
+//   pointDeVente: string
+//   statut: string
+//   date: string
+//   conform: boolean | null
+// }
 
 interface ProduitVisite {
   visite: Visite
@@ -116,6 +117,7 @@ const SidebarProduit = ({ visite, showProduit, setShowProduit }: ProduitVisite) 
       }}
     >
       <div>
+
         <Header>
           <PageHeader title={<Typography variant='h1' marginLeft={10}>Detail & Informations sur l'evenement</Typography>} />
           <IconButton
@@ -196,7 +198,7 @@ const SidebarProduit = ({ visite, showProduit, setShowProduit }: ProduitVisite) 
                 ) : null}
 
                 <Typography variant='h2' style={{ color: '#800080' }} marginLeft={10}>
-                  {visite.pointDeVente}
+                  {visite.pointDeVente.nom}
                 </Typography>
                 <Typography marginLeft={10}>
                   <span style={{ fontSize: '15px', fontWeight: 'bold' }}>Date de visite :</span> {visite.date}
@@ -253,6 +255,7 @@ const SidebarProduit = ({ visite, showProduit, setShowProduit }: ProduitVisite) 
             </Grid>
           </CardContent>
         </Card>
+       
 
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Grid item xs={8}>

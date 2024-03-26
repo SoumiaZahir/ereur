@@ -41,7 +41,7 @@ import DialogAddUser from '../user/DialogAddUser'
 import DetailUser from '../user/DetailUser'
 import DialogAddPoint from '../pointDeVente/DialogAddPoint'
 import DetailPointDeVente from '../pointDeVente/DetailPointDeVente'
-import { MerchandiserVisite } from '../TableStickyHeader'
+import { MerchandiserVisite, Visite } from '../TableStickyHeader'
 import PickersBasic from '../picker/PickersBasic'
 // import DatePicker from 'react-datepicker'
 
@@ -75,13 +75,13 @@ interface visiteMarshandiser {
   merchandiser: string
   visite: Visite
 }
-interface Visite {
-  h_db: string
-  h_fin: string
-  pointDeVente: string
-  statut: string
-  date: string
-}
+// interface Visite {
+//   h_db: string
+//   h_fin: string
+//   pointDeVente: string
+//   statut: string
+//   date: string
+// }
 
 interface DialogEditVisiteArgs {
   visite: Visite
