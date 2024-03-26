@@ -12,7 +12,7 @@ import QuickSearchToolbar from '../QuickSearchToolbar'
 
 // ** Types Imports
 import { ThemeColor } from 'src/@core/layouts/types'
-import { DataGridRowType } from 'src/@fake-db/types'
+import { DataRowsUser } from 'src/@fake-db/types'
 
 // ** Utils Import
 import { getInitials } from 'src/@core/utils/get-initials'
@@ -92,9 +92,9 @@ const columns: GridColDef[] = [
 
 const TableColumns = () => {
   // ** States
-  const [data] = useState<DataGridRowType[]>(rows)
+  const [data] = useState<DataRowsUser[]>(rows)
   const [searchText, setSearchText] = useState<string>('')
-  const [filteredData, setFilteredData] = useState<DataGridRowType[]>([])
+  const [filteredData, setFilteredData] = useState<DataRowsUser[]>([])
   const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 7 })
 
   const handleSearch = (searchValue: string) => {
