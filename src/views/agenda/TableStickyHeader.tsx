@@ -15,6 +15,8 @@ import { AnyAaaaRecord } from 'dns';
 import InfoMarshandiser from './visite/InfoMarshandiser';
 
 
+
+
 export interface Visite {
   pointDeVente: PointDeVente
   h_db: string
@@ -71,7 +73,7 @@ const MarshandiserVisites: MerchandiserVisite[] = [
   {
     merchandiser: { nom: 'Aymen', prenom: 'Belkhiri', email: 'aymen@gmail.com', telephone: '0987654321' },
     visites: [
-      createVisite({ nom: 'Morocco Mall', ville: 'Casa', enseigne: 'enseigne', localisation: 'localisation' }, "8:00", "12:00", "doing", null, "2024-11-25"),
+      createVisite({ nom: 'Morocco Mall', ville: 'Casa', enseigne: 'enseigne', localisation: 'localisation' }, "8:00", "12:00", "doing", false, "2024-11-25"),
       createVisite({ nom: 'Marjane Ain Sbaa', ville: 'Casa', enseigne: 'enseigne', localisation: 'localisation' }, "13:00", "15:00", "doing", true, "2024-11-26"),
       createVisite({ nom: 'Carrefour', ville: 'Casa', enseigne: 'enseigne', localisation: 'localisation' }, "18:00", "21:00", "doing", true, "2024-11-27"),
       createVisite({ nom: 'Bim', ville: 'Casa', enseigne: 'enseigne', localisation: 'localisation' }, "8:00", "12:00", "absent", null, "2024-11-28"),
@@ -111,7 +113,7 @@ const TableStickyHeader = () => {
                 <TableCell component='th' scope='row'>
                   <Typography sx={{ display: 'flex', alignItems: 'center' }}>
                   <Button onClick={()=>setInfo(row.merchandiser)}>
-                  <Icon icon="tabler:info-circle" />
+                  <Icon icon="tabler:user" />
                   </Button>
                   {row.merchandiser.nom}
                   </Typography>

@@ -19,3 +19,10 @@ export type PaymentTypes = {
   formatCardNumber(elem: HTMLInputElement): HTMLInputElement
   formatCardExpiry(elem: HTMLInputElement): HTMLInputElement
 }
+
+export interface Produit {
+  id: number
+  nom: string
+  stock: number
+  prix: number
+}

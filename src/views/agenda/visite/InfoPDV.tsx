@@ -68,8 +68,8 @@ const InfoPDV = ({ PDV, showPDV, setShowPDV }: InfoMarshandiserProps) => {
       sx={{
         '& .MuiDrawer-paper': {
           width: { xs: 1000, sm: 1000 }, // Largeur du Drawer pour les tailles d'écran xs et sm
-          marginTop: '200px', // Marge haute du Drawer
-          paddingBottom: '20px', // Marge basse du Drawer
+          marginTop: '370px', // Marge haute du Drawer
+          paddingBottom: '20px',// Marge basse du Drawer
           height: '50%' // Hauteur du Drawer
         }
       }}

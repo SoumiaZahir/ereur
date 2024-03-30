@@ -29,7 +29,7 @@ import CustomTextField from 'src/@core/components/mui/text-field'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
-import { rows } from 'src/@fake-db/table/static-data'
+// import { rows } from 'src/@fake-db/table/static-data'
 import { FormControl, InputLabel } from '@mui/material'
 import Select from 'src/@core/theme/overrides/select'
 
@@ -101,7 +101,7 @@ const DialogAddProduit = ({toggle, setToggle} :{toggle: any, setToggle:any}) => 
   </CustomCloseButton>
   <Box sx={{ mb: 8, textAlign: 'left' }}>
     <Typography variant='h3' sx={{ mb: 3 }}>
-      <Icon icon='tabler:question-mark' />Ajouter Produit
+      <Icon icon='tabler:device-mobile-plus' />Ajouter Produit
     </Typography>
   </Box>
   <Grid container spacing={3}>

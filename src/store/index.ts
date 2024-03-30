@@ -3,10 +3,16 @@ import { configureStore } from '@reduxjs/toolkit'
 
 // ** Reducers
 import home from './apps/home/index'
+import users from './apps/users'
+import produits from './apps/produit'
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 export const store = configureStore({
   reducer: {
-    home
+    home,
+    users,
+    produits
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
@@ -14,5 +20,8 @@ export const store = configureStore({
     })
 })
 
-export type AppDispatch = typeof store.dispatch
+export type useAppDispatch = typeof store.dispatch
 export type RootState = ReturnType<typeof store.getState>
+
+export const useAppSelector = useSelector<RootState>
+export const useAppDispatch = useDispatch<useAppDispatch>

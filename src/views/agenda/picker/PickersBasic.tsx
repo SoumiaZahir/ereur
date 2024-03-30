@@ -8,12 +8,12 @@ import Box from '@mui/material/Box'
 import DatePicker, { ReactDatePickerProps } from 'react-datepicker'
 
 // ** Custom Component Imports
-import CustomInput from './PickersCustomInput'
+import CustomInput from '../PickersCustomInput'
 
 // ** Types
 import { DateType } from 'src/types/forms/reactDatepickerTypes'
 
-import { Placement } from '@popperjs/core';
+import { Placement } from '@popperjs/core'
 
 const PickersBasic = ({ popperPlacement = 'auto' }: { popperPlacement?: Placement }) => {
   // ** States

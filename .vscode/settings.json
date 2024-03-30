@@ -41,5 +41,8 @@
     "activityBar.background": "#302F07",
     "titleBar.activeBackground": "#44420A",
     "titleBar.activeForeground": "#FBFBE6"
+  },
+  "[svg]": {
+    "editor.defaultFormatter": "jock.svg"
   }
 }

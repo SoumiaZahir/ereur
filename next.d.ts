@@ -12,3 +12,4 @@ declare module 'next' {
     getLayout?: (page: ReactElement) => ReactNode
   }
 }
+

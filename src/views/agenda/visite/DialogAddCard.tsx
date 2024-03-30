@@ -7,7 +7,7 @@ import { Ref, useState, forwardRef, ReactElement, ChangeEvent } from 'react'
 import DatePicker from 'react-datepicker'
 
 // ** MUI Imports
-import CustomInput from '../picker/PickersCustomInput'
+import CustomInput from '../PickersCustomInput'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import Grid from '@mui/material/Grid'
@@ -104,157 +104,194 @@ const DialogAddCard = ({ show, setShow }: { show: any; setShow: any }) => {
           </CustomCloseButton>
           <Box sx={{ mb: 4, textAlign: 'left' }}>
             <Typography variant='h3' sx={{ mb: 3 }}>
-              <Icon icon='tabler:question-mark' /> Ajouter une Nouvelle Visite
+              <Icon icon='tabler:device-mobile-plus' fontSize={30} /> Ajouter une Nouvelle Visite
             </Typography>
           </Box>
           {/* Point De Vente */}
-          <Grid container spacing={4} >
+          <Grid container spacing={4}>
             {/* IPDV PICKER */}
-            <Grid item xs={12} sm={6} >
-            <FormControl fullWidth>
-              <InputLabel id='pontDeVente-label'>Point De Vente</InputLabel>
-              <Select
-                labelId='pontDeVente-label'
-                id='pontDeVente'
-                label='pontDeVente'
-                sx={{ mb: 2, width: '100%',height:"50px" }}
-              >
-                <MenuItem value={10}>pontDeVente 1</MenuItem>
-                <MenuItem value={20}>pontDeVente 2</MenuItem>
-                <MenuItem value={30}>pontDeVente 3</MenuItem>
-              </Select>
+            <Grid item xs={12} sm={6}>
+              <FormControl fullWidth>
+                <InputLabel id='pontDeVente-label'>Point De Vente</InputLabel>
+                <Select
+                  labelId='pontDeVente-label'
+                  id='pontDeVente'
+                  label='pontDeVente'
+                  sx={{ mb: 2, width: '100%', height: '50px' }}
+                >
+                  <MenuItem value={10}>pontDeVente 1</MenuItem>
+                  <MenuItem value={20}>pontDeVente 2</MenuItem>
+                  <MenuItem value={30}>pontDeVente 3</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            {/* IconButton pour rechercher un point de vente */}
+            <Grid item>
+              <dfn title='Rechercher un point de vente '>
+                <IconButton
+                  aria-label='capture screenshot'
+                  style={{
+                    border: '1px solid #ced4da',
+                    borderRadius: '4px',
+                    padding: '6px',
+                    backgroundColor: '#F2F3F4'
+                  }}
+                >
+                  <Icon
+                    icon='tabler:search'
+                    style={{ fontSize: '2rem' }}
+                    onClick={() => {
+                      setShowDetailPoint(true)
+                    }}
+                  />
+                </IconButton>
+              </dfn>
+            </Grid>
+            {/* IconButton pour ajouter un point de vente */}
+            <Grid item>
+              <dfn title='Ajouter un point de vente'>
+                <IconButton
+                  aria-label='capture screenshot'
+                  style={{
+                    border: '1px solid #ced4da',
+                    borderRadius: '4px',
+                    padding: '6px',
+                    backgroundColor: '#F2F3F4'
+                  }}
+                >
+                  <Icon
+                    icon='tabler:plus'
+                    style={{ fontSize: '2rem' }}
+                    onClick={() => {
+                      setTogglePoint(true)
+                    }}
+                  />
+                </IconButton>
+              </dfn>
+            </Grid>
+          </Grid>
+
+          {/* Marshandiser */}
+          <Grid container spacing={4}>
+            {/* IPDV PICKER */}
+            <Grid item xs={12} sm={6}>
+              <FormControl fullWidth>
+                <InputLabel id='pontDeVente-label'>Marshandiser</InputLabel>
+                <Select
+                  labelId='pontDeVente-label'
+                  id='pontDeVente'
+                  label='pontDeVente'
+                  sx={{ mb: 2, width: '100%', height: '50px' }}
+                >
+                  <MenuItem value={10}>Marshandiser 1</MenuItem>
+                  <MenuItem value={20}>Marshandiser 2</MenuItem>
+                  <MenuItem value={30}>Marshandiser 3</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            {/* IconButton pour rechercher un Marshandiser */}
+            <Grid item>
+              <dfn title='Rechercher un point de vente '>
+                <IconButton
+                  aria-label='capture screenshot'
+                  style={{
+                    border: '1px solid #ced4da',
+                    borderRadius: '4px',
+                    padding: '6px',
+                    backgroundColor: '#F2F3F4'
+                  }}
+                >
+                  <Icon icon='tabler:search' style={{ fontSize: '2rem' }} onClick={() => setShowDetail(true)} />
+                </IconButton>
+              </dfn>
+            </Grid>
+            {/* IconButton pour ajouter un Marshandiser */}
+            <Grid item>
+              <dfn title='Ajouter un point de vente'>
+                <IconButton
+                  aria-label='capture screenshot'
+                  style={{
+                    border: '1px solid #ced4da',
+                    borderRadius: '4px',
+                    padding: '6px',
+                    backgroundColor: '#F2F3F4'
+                  }}
+                >
+                  <Icon icon='tabler:plus' style={{ fontSize: '2rem' }} onClick={() => setToggle(true)} />
+                </IconButton>
+              </dfn>
+            </Grid>
+          </Grid>
+
+          <Grid container spacing={4}>
+            {/* Heure de début */}
+            <Grid item xs={12} sm={6}>
+              <DatePicker
+                showTimeSelect
+                timeIntervals={15}
+                showTimeSelectOnly
+                dateFormat='h:mm aa'
+                id='time-only-picker'
+                popperPlacement='auto'
+                onChange={(date: Date) => console.log(date)} // Dummy onChange handler
+                customInput={<CustomInput label='heure_debut' />}
+              />
+            </Grid>
+
+            {/* Heure de fin */}
+            <Grid item xs={12} sm={6}>
+              <DatePicker
+                showTimeSelect
+                timeIntervals={15}
+                showTimeSelectOnly
+                dateFormat='h:mm aa'
+                id='time-only-picker'
+                popperPlacement='auto'
+                onChange={date => console.log(date)} // Add onChange handler here
+                customInput={<CustomInput label='heure_fin' />}
+              />
+            </Grid>
+          </Grid>
+
+          <Grid container spacing={4}>
+            <Grid item xs={12} sm={6}>
+              <PickersBasic />
+            </Grid>
+          </Grid>
+
+          <Grid item xs={12} sm={6}>
+            <FormControl component='fieldset'>
+              <FormLabel component='legend'>Status</FormLabel>
+              <RadioGroup aria-label='status' name='status' value={status} onChange={handleChangeStatus} row>
+                <FormControlLabel value='todo' control={<Radio />} label='A Faire' />
+                <FormControlLabel value='doing' control={<Radio />} label='En cours' />
+                <FormControlLabel value='done' control={<Radio />} label='Fini' />
+                <FormControlLabel value='absent' control={<Radio />} label='Absent' />
+              </RadioGroup>
             </FormControl>
           </Grid>
-          {/* IconButton pour rechercher un point de vente */}
-          <Grid item  >
-            <dfn title='Rechercher un point de vente '>
-              <IconButton aria-label='capture screenshot' style={{ border: '1px solid #ced4da', borderRadius: '4px', padding: '6px',backgroundColor:"#F2F3F4" }}>
-                <Icon icon='tabler:search' style={{ fontSize: '2rem' }}  onClick={() => {setShowDetailPoint(true)}} />
-              </IconButton>
-            </dfn>
-          </Grid>
-          {/* IconButton pour ajouter un point de vente */}
-          <Grid item   >
-            <dfn title='Ajouter un point de vente'>
-              <IconButton aria-label='capture screenshot' style={{ border: '1px solid #ced4da', borderRadius: '4px', padding: '6px',backgroundColor:"#F2F3F4" }}>
-                <Icon icon='tabler:plus' style={{ fontSize: '2rem' }}
-                onClick={() => {
-                  setTogglePoint(true)
-                }} />
-              </IconButton>
-            </dfn>
-            </Grid>
-            </Grid>
+        </DialogContent>
+        <DialogActions
+          sx={{
+            justifyContent: 'center',
+            px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`],
+            pb: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`]
+          }}
+        >
+          <Button variant='contained' sx={{ mr: 1 }} onClick={handleClose}>
+            Submit
+          </Button>
+          <Button variant='tonal' color='secondary' onClick={handleClose}>
+            Cancel
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <DialogAddUser toggle={toggle} setToggle={setToggle} />
+      <DetailUser showDetail={showDetail} setShowDetail={setShowDetail} />
+      <DialogAddPoint togglePoint={togglePoint} setTogglePoint={setTogglePoint} />
+      <DetailPointDeVente showDetailPoint={showDetailPoint} setShowDetailPoint={setShowDetailPoint} />
+    </Card>
+  )
+}
 
-
-            {/* Marshandiser */}
-            <Grid container spacing={4} >
-            {/* IPDV PICKER */}
-            <Grid item xs={12} sm={6} >
-            <FormControl fullWidth>
-              <InputLabel id='pontDeVente-label'>Marshandiser</InputLabel>
-              <Select
-                labelId='pontDeVente-label'
-                id='pontDeVente'
-                label='pontDeVente'
-                sx={{ mb: 2, width: '100%',height:"50px" }}
-              >
-                <MenuItem value={10}>Marshandiser 1</MenuItem>
-                <MenuItem value={20}>Marshandiser 2</MenuItem>
-                <MenuItem value={30}>Marshandiser 3</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-          {/* IconButton pour rechercher un Marshandiser */}
-          <Grid item  >
-            <dfn title='Rechercher un point de vente '>
-              <IconButton aria-label='capture screenshot' style={{ border: '1px solid #ced4da', borderRadius: '4px', padding: '6px',backgroundColor:"#F2F3F4" }}>
-                <Icon icon='tabler:search' style={{ fontSize: '2rem' }} onClick={() => setShowDetail(true)} />
-              </IconButton>
-            </dfn>
-          </Grid>
-          {/* IconButton pour ajouter un Marshandiser */}
-          <Grid item   >
-            <dfn title='Ajouter un point de vente'>
-              <IconButton aria-label='capture screenshot' style={{ border: '1px solid #ced4da', borderRadius: '4px', padding: '6px',backgroundColor:"#F2F3F4" }}>
-                <Icon icon='tabler:plus' style={{ fontSize: '2rem' }} onClick={() => setToggle(true)}/>
-              </IconButton>
-            </dfn>
-            </Grid>
-            </Grid>
-
-
-            <Grid container spacing={4}>
-  {/* Heure de début */}
-  <Grid item xs={12} sm={6}>
-    <DatePicker
-      showTimeSelect
-      timeIntervals={15}
-      showTimeSelectOnly
-      dateFormat='h:mm aa'
-      id='time-only-picker'
-      popperPlacement='auto'
-      onChange={(date: Date) => console.log(date)} // Dummy onChange handler
-      customInput={<CustomInput label='heure_debut' />}
-    />
-  </Grid>
-
-  {/* Heure de fin */}
-  <Grid item xs={12} sm={6}>
-    <DatePicker
-      showTimeSelect
-      timeIntervals={15}
-      showTimeSelectOnly
-      dateFormat='h:mm aa'
-      id='time-only-picker'
-      popperPlacement='auto'
-      onChange={(date) => console.log(date)} // Add onChange handler here
-      customInput={<CustomInput label='heure_fin' />}
-    />
-  </Grid>
-</Grid>
-
-
-              <Grid container spacing={4} >
-              <Grid item xs={12} sm={6}>
-                <PickersBasic />
-              </Grid>
-              </Grid>
-
-              <Grid item xs={12} sm={6}>
-                <FormControl component='fieldset'>
-                  <FormLabel component='legend'>Status</FormLabel>
-                  <RadioGroup aria-label='status' name='status' value={status} onChange={handleChangeStatus} row>
-                    <FormControlLabel value='todo' control={<Radio />}  label='A Faire' />
-                    <FormControlLabel value='doing' control={<Radio />} label='En cours' />
-                    <FormControlLabel value='done' control={<Radio />} label='Fini' />
-                    <FormControlLabel value='absent' control={<Radio />} label='Absent' />
-                  </RadioGroup>
-                </FormControl>
-              </Grid>
-          </DialogContent>
-          <DialogActions
-            sx={{
-              justifyContent: 'center',
-              px: theme => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`],
-              pb: theme => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`]
-            }}
-          >
-            <Button variant='contained' sx={{ mr: 1 }} onClick={handleClose}>
-              Submit
-            </Button>
-            <Button variant='tonal' color='secondary' onClick={handleClose}>
-              Cancel
-            </Button>
-          </DialogActions>
-        </Dialog>
-        <DialogAddUser toggle={toggle} setToggle={setToggle} />
-        <DetailUser showDetail={showDetail} setShowDetail={setShowDetail} />
-        <DialogAddPoint togglePoint={togglePoint} setTogglePoint={setTogglePoint} />
-        <DetailPointDeVente showDetailPoint={showDetailPoint} setShowDetailPoint={setShowDetailPoint} />
-      </Card>
-    )
-  }
-
-  export default DialogAddCard
-
+export default DialogAddCard

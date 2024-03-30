@@ -210,7 +210,7 @@ const VerticalNavGroup = (props: Props) => {
                 '&:hover': {
                   backgroundColor: 'action.selected'
                 },
-                '& .MuiTypography-root, & :not(.menu-item-meta) > svg': {
+                '& .MuiTypography-root, & :not(.menu-item-meta) > ': {
                   color: 'text.primary'
                 },
                 '& .menu-item-meta > svg': {

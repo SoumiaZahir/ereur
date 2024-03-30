@@ -21,7 +21,7 @@ const navigation = (): VerticalNavItemsType => {
     },
     {
       title: 'Points De Vente',
-      icon: "tabler:building-store",
+      icon: "tabler:shopping-cart",
       path: '/points-de-vente'
     },
     {
@@ -46,7 +46,7 @@ const navigation = (): VerticalNavItemsType => {
         },
         {
           title: 'Points De Vente',
-          icon: "tabler:building-store",
+          icon: "tabler:shopping-cart",
           path: 'admin/pdv'
         },
         {
